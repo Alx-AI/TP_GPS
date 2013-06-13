@@ -142,6 +142,17 @@ def aff_cercle_visi(lon, lat, dlon, dlat, col, fig):
     col : param affichage des cercles
     """
     from params import CRD
+    from matplotlib.patches import Ellipse
+
+    ## Ellipse
+    wi = dlat.max()
+    he = dlon.max()
+    ell = Ellipse(xy=(lon*CRD, lat*CRD), height=he*CRD,
+                  width=wi*CRD, facecolor='none',
+                  edgecolor='r')
+    ax = fig.add_subplot(111)
+    ax.add_patch(ell)
+    print(ell)
 
     s = len(dlon)
     lon_vis = np.zeros((2, s))
